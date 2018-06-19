@@ -18,24 +18,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="crr-n1-WeR">
-                                <rect key="frame" x="0.0" y="28" width="375" height="469"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZ3-4K-fmo">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZ3-4K-fmo">
                                 <rect key="frame" x="174" y="556" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="vdl-y9-223"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="selectPictureButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xpy-Cz-zeb"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8i-uI-zT3">
+                                <rect key="frame" x="0.0" y="59" width="375" height="435"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="435" id="zBM-vB-aik"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cZ3-4K-fmo" firstAttribute="top" secondItem="S8i-uI-zT3" secondAttribute="bottom" constant="62" id="KLB-ov-onV"/>
+                            <constraint firstItem="cZ3-4K-fmo" firstAttribute="top" secondItem="S8i-uI-zT3" secondAttribute="bottom" constant="62" id="QiW-nB-JrG"/>
+                            <constraint firstItem="S8i-uI-zT3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="39" id="Uxc-Re-ZEk"/>
+                            <constraint firstItem="S8i-uI-zT3" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VsS-4a-gBN"/>
+                            <constraint firstItem="S8i-uI-zT3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fHg-fj-9wF"/>
+                            <constraint firstItem="cZ3-4K-fmo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="174" id="pHg-ou-M9M"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cZ3-4K-fmo" secondAttribute="trailing" constant="155" id="tyb-vd-sWh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cZ3-4K-fmo" secondAttribute="bottom" constant="81" id="ynw-rw-oy8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="crr-n1-WeR" id="Rpv-UN-Fyz"/>
+                        <outlet property="scrollView" destination="S8i-uI-zT3" id="b8C-nC-E23"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
