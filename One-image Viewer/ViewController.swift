@@ -12,44 +12,68 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
 
 
     @IBOutlet weak var scrollView: UIScrollView!
-    
     var imageView = UIImageView()
     
-    @IBAction func selectPictureButton(_ sender: Any) {
-        let controller = UIImagePickerController()
-        controller.delegate = self
-        controller.sourceType = .photoLibrary
-        present(controller, animated: true, completion: nil)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        scrollView.delegate = self
+        imageView.frame = CGRect(x: 0, y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
+        imageView.image = UIImage(named: "icon_photo")
+//        imageView.isUserInteractionEnabled = true
+        scrollView.addSubview(imageView)
+        
     }
     
-    func imagePickerControllerDidCancel(_ Picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
+    
+    @IBAction func selectPictureButton(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
+        
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
         imageView.image = image
         imageView.contentMode = UIViewContentMode.center
-        imageView.frame = CGRect(x: 0, y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
+        
+        imageView.frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
         
         scrollView.contentSize = image.size
         
         let scrollViewFrame = scrollView.frame
         let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
         let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height
+       
         let minScale = min(scaleHeight, scaleWidth)
         scrollView.minimumZoomScale = minScale
         scrollView.maximumZoomScale = 1
         scrollView.zoomScale = minScale
+        
         centerScrollViewContents()
+        
         picker.dismiss(animated: true, completion: nil)
-
+        
     }
+    
+    
+    func setZoomScale() {
+        let imageViewSize = imageView.bounds.size
+        let scrollViewSize = scrollView.bounds.size
+        let widthScale = scrollViewSize.width / imageViewSize.width
+        let heightScale = scrollViewSize.height / imageViewSize.height
+        
+        scrollView.minimumZoomScale = min(widthScale, heightScale)
+        scrollView.zoomScale = 1.0
+    }
+    
     
     func centerScrollViewContents() {
         let boundsSize = scrollView.bounds.size
         var contentFrame = imageView.frame
-       
+        
         if contentFrame.size.width < boundsSize.width {
             contentFrame.origin.x = (boundsSize.width - contentFrame.size.width) / 2
         }
@@ -62,14 +86,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
             
         }
         else {
-             contentFrame.origin.y = 0
+            contentFrame.origin.y = 0
         }
         
         imageView.frame = contentFrame
         
     }
     
-    func scrollViewDidZoom(scrollView: UIScrollView) {
+    
+    
+    func scrollViewDidZoom( scrollView: UIScrollView) {
         centerScrollViewContents()
     }
     
@@ -77,17 +103,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         return imageView
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        scrollView.delegate = self
-        imageView.frame = CGRect(x: 0, y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
-        imageView.image = UIImage(named: "imageView")
-        imageView.isUserInteractionEnabled = true
-      
-        scrollView.addSubview(imageView)
-        
-    }
-
+//    func imagePickerControllerDidCancel(_ Picker: UIImagePickerController) {
+//        dismiss(animated: true, completion: nil)
+//    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
