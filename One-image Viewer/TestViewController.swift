@@ -32,6 +32,8 @@ class TestViewController: UIViewController, UIScrollViewDelegate,UINavigationCon
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 2.0
         
+        //為何無效
+        changePhotoButton.tintColor = UIColor.white
        
         
         
