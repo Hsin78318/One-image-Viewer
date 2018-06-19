@@ -20,15 +20,6 @@ class ViewController: UIViewController, UIScrollViewDelegate, UINavigationContro
         scrollView.delegate = self
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 2.0
-        
-//        imageView.image = UIImage(named: "icon_photo")
-//        imageView.center = CGPoint(
-//            x: fullScreenSize.width * 0.5,
-//            y: fullScreenSize.height * 0.5,
-//
-//            self.view.addSubview(imageView)
-//        )
-       
     }
     
     @IBAction func changePhotoButton(_ sender: Any) {
@@ -40,11 +31,10 @@ class ViewController: UIViewController, UIScrollViewDelegate, UINavigationContro
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        scrollView.contentSize = CGSize(width:2000, height:2000)
+        scrollView.contentSize = CGSize(width:1500, height:1500)
         imageView.image = image
         
         picker.dismiss(animated: true, completion: nil)
-        
     }
     
     func viewForZoominInScrollview(scrollView: UIScrollView) -> UIView? {
